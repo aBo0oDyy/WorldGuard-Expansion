@@ -28,6 +28,7 @@ import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.codemc.worldguardwrapper.WorldGuardWrapper;
+import org.codemc.worldguardwrapper.flag.IWrappedFlag;
 import org.codemc.worldguardwrapper.region.IWrappedRegion;
 import org.codemc.worldguardwrapper.selection.ICuboidSelection;
 
@@ -139,6 +140,25 @@ public class WorldGuardExpansion extends PlaceholderExpansion {
 
             return region.getFlags().keySet().stream().anyMatch(f ->
                     f.getName().equalsIgnoreCase(rg[1])) ? PlaceholderAPIPlugin.booleanTrue() : PlaceholderAPIPlugin.booleanFalse();
+        }
+
+        if (params.startsWith("region_flag_")) {
+            final String[] flag = params.split("region_flag_");
+            if (flag.length < 1) return null;
+
+            for (IWrappedFlag<?> f : region.getFlags().keySet()) {
+                Optional<?> regionFlag = region.getFlag(f);
+                if (!regionFlag.isPresent()) continue;
+
+                if (f.getName().equalsIgnoreCase(flag[1])) {
+                    if (regionFlag.get().getClass() == Optional.class) {
+                        if (!((Optional<?>) regionFlag.get()).isPresent()) continue;
+
+                        return String.valueOf(((Optional<?>) regionFlag.get()).get());
+                    }
+                }
+            }
+            return "null";
         }
 
         // Defined as a switch statement to keep thinks clean
