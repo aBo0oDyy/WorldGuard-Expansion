@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.extendedclip.papi.expansion.worldguard</groupId>
   <artifactId>worldguard-expansion</artifactId>
-  <version>1.4.2</version>
+  <version>1.4.3</version>
   <name>WorldGuard-Expansion</name>
   <description>PlaceholderAPI expansion for WorldGuard placeholders</description>
 
@@ -15,7 +15,7 @@
     </repository>
     <repository>
       <id>placeholderapi</id>
-      <url>http://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+      <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
     </repository>
     <repository>
       <id>sk89q-repo</id>
